@@ -4,7 +4,7 @@ import com.arka_store.shipping.infrastructure.web.resources.ReturnShippingReques
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 
-@FeignClient(name = "returns-service",url = "http://localhost:8081/returns")
+@FeignClient(name = "PRODUCTS-SERVICE",path = "/returns")
 public interface ReturnsClient {
     @PostMapping
     void returnsShipping(ReturnShippingRequest shippingRequest);
