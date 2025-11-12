@@ -40,5 +40,5 @@ jobs:
         env:
           SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/shipping
           SPRING_DATASOURCE_USERNAME: postgres
-          SPRING_DATASOURCE_PASSWORD: p4ssw0rd
+          SPRING_DATASOURCE_PASSWORD: simple123
         run: ./gradlew clean build --no-daemon
