@@ -38,7 +38,7 @@ jobs:
         run: chmod +x gradlew
       - name: Build and run test
         env:
-          SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/demo
+          SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/shipping
           SPRING_DATASOURCE_USERNAME: postgres
           SPRING_DATASOURCE_PASSWORD: p4ssw0rd
         run: ./gradlew clean build --no-daemon
