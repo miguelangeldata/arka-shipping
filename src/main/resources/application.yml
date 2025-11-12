@@ -16,6 +16,11 @@ spring:
       ddl-auto: update
     show-sql: true
 
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: guest
+    password: guest
   cloud:
     function:
       definition: shippingSendSupplier
@@ -37,12 +42,12 @@ management:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://eureka-server:8761/eureka
     register-with-eureka: true
     fetch-registry: true
   instance:
     prefer-ip-address: true
-    hostname: localhost
+    hostname: shipping
     instance-id: ${spring.application.name}:${server.port}
 
 springdoc:
