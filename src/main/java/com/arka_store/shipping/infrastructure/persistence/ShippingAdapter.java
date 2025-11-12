@@ -1,5 +1,6 @@
 package com.arka_store.shipping.infrastructure.persistence;
 
+import com.arka_store.shipping.domain.MetricsForShipping;
 import com.arka_store.shipping.domain.Shipping;
 import com.arka_store.shipping.infrastructure.ShippingMapper;
 import com.arka_store.shipping.infrastructure.persistence.repositories.ShippingJpaRepository;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 public class ShippingAdapter implements ShippingUsesCases {
     private final ShippingJpaRepository repository;
     private final ShippingMapper mapper;
+
     @Override
     public Shipping save(Shipping shipping) {
         return mapper.entityToDomain(repository.save(mapper.domainToEntity(shipping)));
@@ -24,7 +26,7 @@ public class ShippingAdapter implements ShippingUsesCases {
     @Override
     public Shipping findById(UUID id) {
         return repository.findById(id).map(mapper::entityToDomain)
-                .orElseThrow(()->new IllegalArgumentException("Shipping not FInd By Id"+id));
+                .orElseThrow(() -> new IllegalArgumentException("Shipping not FInd By Id" + id));
     }
 
     @Override

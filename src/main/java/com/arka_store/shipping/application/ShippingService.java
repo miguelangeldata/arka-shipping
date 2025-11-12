@@ -1,6 +1,8 @@
 package com.arka_store.shipping.application;
 
+import com.arka_store.shipping.domain.MetricsForShipping;
 import com.arka_store.shipping.domain.Shipping;
+import com.arka_store.shipping.domain.ShippingStatus;
 import com.arka_store.shipping.domain.events.ShippingSendEvent;
 import com.arka_store.shipping.domain.utils.RandomShippingDateGenerator;
 import com.arka_store.shipping.infrastructure.feign.ReturnsClient;
@@ -77,8 +79,30 @@ ShippingService {
                 .userEmail(shipping.getUserEmail())
                 .items(shipping.getItems())
                 .build();
+    }
+    public MetricsForShipping getMetricsForShipping(){
+        List<Shipping>shippings=getAllShipping();
+        Integer totalShippings=totalShipping(shippings);
+        Integer totalShippingsSent=totalShippingSent(shippings);
+        Integer totalShippingReceived=totalShippingReceived(shippings);
+        Integer totalShippingReturned=totalShippingReturned(shippings);
+        return new MetricsForShipping(totalShippings,totalShippingsSent,totalShippingReceived,totalShippingReturned);
+    }
+    private Integer totalShipping(List<Shipping> shippings){
+        return shippings.size();
+    }
+    private Integer totalShippingSent(List<Shipping> shippings){
+        return Math.toIntExact(shippings.stream()
+                .filter(shipping -> shipping.getStatus().equals(ShippingStatus.SEND)).count());
+    }
+    private Integer totalShippingReceived(List<Shipping> shippings){
+        return Math.toIntExact(shippings.stream()
+                .filter(shipping -> shipping.getStatus().equals(ShippingStatus.ARRIVED)).count());
+    }
 
-
+    private Integer totalShippingReturned(List<Shipping> shippings){
+        return Math.toIntExact(shippings.stream()
+                .filter(shipping -> shipping.getStatus().equals(ShippingStatus.RETURNED)).count());
     }
 
 }

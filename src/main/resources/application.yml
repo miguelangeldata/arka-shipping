@@ -27,11 +27,13 @@ spring:
           producer:
             durable-expression: true
 
-  management:
-    endpoints:
-      web:
-        exposure:
-          include: busrefresh
+management:
+  endpoints:
+    web:
+      exposure:
+        include: busrefresh, prometheus
+    prometheus:
+      enabled: true
 eureka:
   client:
     service-url:

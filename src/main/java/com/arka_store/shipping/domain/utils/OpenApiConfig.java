@@ -13,8 +13,8 @@ public class OpenApiConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Store Orders Service API")
+                        .title("Store Shipping Service API")
                         .version("1.0.0")
-                        .description("API for store orders management"));
+                        .description("API for store shipping management"));
     }
 }

@@ -1,6 +1,7 @@
 package com.arka_store.shipping.infrastructure.web.controllers;
 
 import com.arka_store.shipping.application.ShippingService;
+import com.arka_store.shipping.domain.MetricsForShipping;
 import com.arka_store.shipping.domain.Shipping;
 import com.arka_store.shipping.infrastructure.web.resources.ShippingRequest;
 import com.arka_store.shipping.infrastructure.web.resources.ShippingResponse;
@@ -86,9 +87,10 @@ public class ShippingController {
         List<Shipping> shippingList=service.getAllShipping();
         return ResponseEntity.ok(shippingList);
     }
-
-
-
-
+    @GetMapping("/metrics")
+    public ResponseEntity<MetricsForShipping> getMetricsForShipping(){
+        MetricsForShipping metrics=service.getMetricsForShipping();
+        return ResponseEntity.ok(metrics);
+    }
 
 }
